@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Memories — Special Scrapbook for You | lovinly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        paper: {
+                            50: '#FDFBF7',
+                            100: '#F9F4EA',
+                            200: '#F1E6D2',
+                            300: '#E5D3B3',
+                        },
+                        rosevintage: {
+                            50: '#FFF5F6',
+                            100: '#FFE4E8',
+                            500: '#E11D48',
+                            600: '#BE123C',
+                            800: '#881337',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrapbook Paper Texture & Lined Paper */
+        body {
+            background-color: #FDF9F1;
+            background-image:
+                radial-gradient(#E6D7C3 0.75px, transparent 0.75px),
+                radial-gradient(#F2E6D8 0.75px, #FDF9F1 0.75px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+        }
+
+        .lined-paper {
+            background-color: #FFFDF9;
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 31px,
+                #F3E5D8 31px,
+                #F3E5D8 32px
+            );
+            line-height: 32px;
+        }
+
+        /* Washi Tape Styles */
+        .washi-pink {
+            background: rgba(251, 113, 133, 0.38);
+            backdrop-filter: blur(2px);
+            border-left: 2px dashed rgba(255, 255, 255, 0.65);
+            border-right: 2px dashed rgba(255, 255, 255, 0.65);
+        }
+        .washi-amber {
+            background: rgba(251, 191, 36, 0.35);
+            backdrop-filter: blur(2px);
+            border-left: 2px dashed rgba(255, 255, 255, 0.65);
+            border-right: 2px dashed rgba(255, 255, 255, 0.65);
+        }
+        .washi-sage {
+            background: rgba(110, 231, 183, 0.35);
+            backdrop-filter: blur(2px);
+            border-left: 2px dashed rgba(255, 255, 255, 0.65);
+            border-right: 2px dashed rgba(255, 255, 255, 0.65);
+        }
+
+        /* 3D Polaroid Card Flip */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-style: preserve-3d;
+        }
+        .flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Candle Flame Animation */
+        @keyframes flameFlicker {
+            0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+            25% { transform: scale(1.1, 0.92) rotate(3deg); opacity: 0.9; }
+            50% { transform: scale(0.95, 1.12) rotate(-3deg); opacity: 1; }
+            75% { transform: scale(1.08, 0.96) rotate(2deg); opacity: 0.92; }
+        }
+        .flame-anim {
+            animation: flameFlicker 0.45s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        @keyframes smokeRise {
+            0% { transform: translateY(0) scale(0.8); opacity: 0.9; }
+            100% { transform: translateY(-28px) scale(1.6); opacity: 0; }
+        }
+        .smoke-anim {
+            animation: smokeRise 1.1s ease-out forwards;
+        }
+
+        @keyframes spinVinyl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .vinyl-spin {
+            animation: spinVinyl 6s linear infinite;
+        }
+        .vinyl-paused {
+            animation-play-state: paused;
+        }
+
+        @keyframes floatGentle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1.5deg); }
+        }
+        .animate-float-gentle {
+            animation: floatGentle 4s ease-in-out infinite;
+        }
+
+        @keyframes sealPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.5); }
+            50% { transform: scale(1.07); box-shadow: 0 0 0 16px rgba(225, 29, 72, 0); }
+        }
+        .animate-seal-pulse {
+            animation: sealPulse 2s infinite;
+        }
+
+        /* Floating Petals Canvas */
+        #petals-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 15;
+        }
+    </style>
+</head>
+<body class="text-stone-800 antialiased selection:bg-rose-200 selection:text-rose-900 overflow-x-hidden pb-28">
+
+    <!-- ================================================================= -->
+    <!-- AMBIENT FLOATING PETALS & SPARKLES CANVAS                         -->
+    <!-- ================================================================= -->
+    <canvas id="petals-canvas"></canvas>
+
+    <!-- ================================================================= -->
+    <!-- 1. FULL-SCREEN OPENING GATE (WAX-SEALED SCRAPBOOK ENVELOPE)       -->
+    <!-- ================================================================= -->
+    <div id="opening-gate" class="fixed inset-0 z-50 bg-[#F7EFE4] flex flex-col items-center justify-center p-4 transition-all duration-1000">
+        <!-- Decorative Vintage Corner Borders -->
+        <div class="absolute inset-4 sm:inset-8 border-2 border-dashed border-amber-800/25 rounded-3xl pointer-events-none"></div>
+
+        <div class="max-w-md w-full text-center space-y-6 relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-900/10 border border-amber-900/20 text-amber-950 text-xs font-mono font-bold tracking-widest uppercase">
+                <span>📖 SPECIAL EDITION SCRAPBOOK</span>
+            </div>
+
+            <!-- Scrapbook Envelope Card -->
+            <div class="relative mx-auto bg-[#FFFDF9] rounded-[2rem] p-7 sm:p-9 shadow-2xl border border-amber-900/15 transform transition-all duration-500 hover:scale-[1.01]">
+                <!-- Washi Tape Top -->
+                <div class="washi-pink w-36 h-7 mx-auto -mt-11 mb-5 rotate-[-2deg] rounded-sm shadow-sm"></div>
+
+                <!-- Stamp & Postmark -->
+                <div class="flex items-center justify-between text-left border-b border-stone-200 pb-4 mb-5">
+                    <div>
+                        <p class="text-[10px] font-mono uppercase tracking-widest text-stone-400">DIKIRIM KHUSUS UNTUK:</p>
+                        <h1 data-bind="recipient" class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-0.5">Alya Sayang ✨</h1>
+                    </div>
+                    <div class="w-14 h-16 rounded-lg bg-rose-50 border-2 border-dashed border-rose-300 flex flex-col items-center justify-center p-1 rotate-6 shrink-0">
+                        <span class="text-xl">🎂</span>
+                        <span class="text-[8px] font-mono font-bold text-rose-700 uppercase">LOVINLY</span>
+                    </div>
+                </div>
+
+                <p class="font-hand text-2xl text-stone-600 leading-snug mb-6">
+                    "Ada sedikit kenangan, doa, dan kejutan kecil yang udah aku siapin khusus di hari ulang tahunmu..."
+                </p>
+
+                <!-- Interactive Wax Seal Button -->
+                <div class="py-3 flex flex-col items-center justify-center">
+                    <button onclick="unlockScrapbookGate()" class="animate-seal-pulse group relative w-24 h-24 rounded-full bg-gradient-to-br from-rose-600 via-rose-700 to-red-900 text-amber-100 shadow-xl border-4 border-rose-500/40 flex flex-col items-center justify-center cursor-pointer transition active:scale-90">
+                        <div class="w-18 h-18 rounded-full border border-amber-200/40 flex flex-col items-center justify-center p-2">
+                            <span class="text-2xl group-hover:scale-110 transition">💌</span>
+                            <span class="text-[8px] font-mono font-bold tracking-widest uppercase mt-0.5">BUKA</span>
+                        </div>
+                    </button>
+                    <p class="text-xs font-extrabold text-rose-700 mt-4 tracking-wide animate-bounce">
+                        👆 Ketuk Segel Lilin untuk Membuka & Putar Musik
+                    </p>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between text-[11px] font-mono text-stone-400">
+                    <span>DARI: <strong data-bind="sender" class="text-stone-700">Raka ♥</strong></span>
+                    <span data-bind="bdayDateLabel">14 FEBRUARI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- FLOATING TOP BAR (MUSIC VINYL PLAYER & URL BAR)                   -->
+    <!-- ================================================================= -->
+    <header class="sticky top-0 z-30 backdrop-blur-md bg-[#FDF9F1]/85 border-b border-amber-900/10 px-4 py-2.5">
+        <div class="max-w-3xl mx-auto flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 truncate">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-mono text-xs text-stone-600 truncate">🔒 lovinly/<span data-bind="slug">birthday-memories</span></span>
+            </div>
+
+            <!-- Spinning Vinyl Audio Pill -->
+            <div class="flex items-center gap-2">
+                <button onclick="toggleBackgroundMusic()" id="music-pill-btn" class="flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full bg-stone-900 text-amber-100 text-xs font-bold shadow-md hover:bg-stone-800 transition">
+                    <div id="vinyl-disc" class="w-6 h-6 rounded-full bg-stone-950 border-2 border-amber-400 flex items-center justify-center vinyl-spin">
+                        <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                    </div>
+                    <span id="music-status-text" class="text-[11px] font-mono">🎵 Playing: Birthday Acoustic</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- MAIN SCRAPBOOK CONTENT CONTAINER                                  -->
+    <!-- ================================================================= -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 pt-8 space-y-16 relative z-20">
+
+        <!-- ============================================================= -->
+        <!-- SECTION 1: HERO SCRAPBOOK COVER & LIVE AGE/TOGETHER COUNTER   -->
+        <!-- ============================================================= -->
+        <section class="relative bg-[#FFFDF9] rounded-[2.2rem] p-6 sm:p-10 shadow-xl border border-amber-900/15 text-center">
+            <!-- Washi Tape Corners -->
+            <div class="washi-amber w-32 h-7 absolute -top-3.5 left-8 -rotate-6 rounded-sm"></div>
+            <div class="washi-pink w-32 h-7 absolute -top-3.5 right-8 rotate-6 rounded-sm"></div>
+
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-100/80 text-rose-800 text-xs font-extrabold tracking-wide mb-3">
+                <span>✨ CHAPTER SPESIAL ULANG TAHUNMU ✨</span>
+            </div>
+
+            <h2 data-bind="headline" class="font-serif text-3xl sm:text-5xl font-bold text-stone-900 leading-tight">
+                Happy Birthday, My Favorite Person!
+            </h2>
+
+            <p data-bind="subheadline" class="font-hand text-2xl sm:text-3xl text-rose-700 mt-2">
+                Terima kasih sudah lahir ke dunia dan jadi bagian paling indah di hidupku ♥
+            </p>
+
+            <!-- Hero Featured Polaroid Frame -->
+            <div class="mt-7 max-w-sm mx-auto bg-white p-3.5 pb-6 rounded-2xl shadow-lg border border-stone-200 -rotate-1 hover:rotate-0 transition duration-500 relative">
+                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-100">
+                    <img id="hero-main-photo" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80" alt="Hero Memory" class="w-full h-full object-cover">
+                    <div class="absolute bottom-2 right-2 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-sm text-amber-200 font-mono text-[10px]">
+                        📸 MEMORIES OF US
+                    </div>
+                </div>
+                <p data-bind="heroCaption" class="font-hand text-2xl text-stone-800 mt-3">
+                    Senyum favoritku yang nggak pernah bosan aku lihat setiap hari ✨
+                </p>
+            </div>
+
+            <!-- Live Real-Time Second Counter -->
+            <div class="mt-9 pt-7 border-t border-dashed border-stone-200 space-y-4">
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button onclick="switchTimerMode('birth')" id="timer-tab-birth" class="px-4 py-1.5 rounded-full text-xs font-extrabold bg-rose-600 text-white shadow-sm transition">
+                        🎂 Waktu Sejak Kamu Lahir
+                    </button>
+                    <button onclick="switchTimerMode('together')" id="timer-tab-together" class="px-4 py-1.5 rounded-full text-xs font-bold bg-stone-100 text-stone-600 hover:bg-rose-50 transition">
+                        💑 Waktu Kebersamaan Kita
+                    </button>
+                </div>
+
+                <p id="timer-caption" class="text-xs font-semibold text-stone-500">
+                    Dunia udah jadi tempat yang jauh lebih indah selama:
+                </p>
+
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto">
+                    <div class="p-3 rounded-2xl bg-[#F9F4EA] border border-amber-900/15">
+                        <span id="cnt-days" class="block font-mono text-xl sm:text-3xl font-extrabold text-stone-900">8,035</span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-stone-500">Hari</span>
+                    </div>
+                    <div class="p-3 rounded-2xl bg-[#F9F4EA] border border-amber-900/15">
+                        <span id="cnt-hours" class="block font-mono text-xl sm:text-3xl font-extrabold text-stone-900">14</span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-stone-500">Jam</span>
+                    </div>
+                    <div class="p-3 rounded-2xl bg-[#F9F4EA] border border-amber-900/15">
+                        <span id="cnt-mins" class="block font-mono text-xl sm:text-3xl font-extrabold text-stone-900">28</span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-stone-500">Menit</span>
+                    </div>
+                    <div class="p-3 rounded-2xl bg-rose-50 border border-rose-200">
+                        <span id="cnt-secs" class="block font-mono text-xl sm:text-3xl font-extrabold text-rose-600">45</span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-rose-700">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- SECTION 2: INTERACTIVE BIRTHDAY CAKE (MIC BLOW + TAP CANDLES) -->
+        <!-- ============================================================= -->
+        <section class="bg-[#FFFDF9] rounded-[2.2rem] p-6 sm:p-10 shadow-xl border border-amber-900/15 text-center space-y-6 relative overflow-hidden">
+            <div class="space-y-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-rose-600">🕯️ MAKE A WISH & BLOW THE CANDLES</span>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">Pejamkan Mata, Berdoa & Tiup Lilinnya!</h3>
+                <p class="text-xs sm:text-sm text-stone-500 max-w-lg mx-auto">
+                    Ketuk masing-masing lilin di bawah, atau aktifkan <strong>Sensor Tiup Mikrofon</strong> dan tiup langsung ke layar HP/laptop kamu!
+                </p>
+            </div>
+
+            <!-- Interactive SVG/HTML Layered Birthday Cake -->
+            <div class="py-6 flex flex-col items-center justify-center">
+                <!-- 3 Interactive Candles Row -->
+                <div class="flex items-end justify-center gap-8 sm:gap-10 mb-[-6px] z-10">
+                    <!-- Candle 1 -->
+                    <div onclick="blowSingleCandle(0)" class="cursor-pointer flex flex-col items-center group">
+                        <div id="flame-0" class="h-8 flex items-center justify-center">
+                            <div class="w-4 h-7 rounded-full bg-gradient-to-t from-orange-500 via-amber-400 to-yellow-200 shadow-[0_0_18px_#f59e0b] flame-anim"></div>
+                        </div>
+                        <div class="w-4 h-14 rounded-t-md bg-gradient-to-b from-rose-100 to-rose-300 border-2 border-rose-400 flex flex-col justify-around overflow-hidden shadow">
+                            <div class="h-1.5 bg-rose-500 -rotate-12"></div>
+                            <div class="h-1.5 bg-rose-500 -rotate-12"></div>
+                            <div class="h-1.5 bg-rose-500 -rotate-12"></div>
+                        </div>
+                    </div>
+
+                    <!-- Candle 2 (Center Taller) -->
+                    <div onclick="blowSingleCandle(1)" class="cursor-pointer flex flex-col items-center group">
+                        <div id="flame-1" class="h-8 flex items-center justify-center">
+                            <div class="w-4 h-7 rounded-full bg-gradient-to-t from-orange-500 via-amber-400 to-yellow-200 shadow-[0_0_18px_#f59e0b] flame-anim"></div>
+                        </div>
+                        <div class="w-4 h-16 rounded-t-md bg-gradient-to-b from-amber-100 to-amber-300 border-2 border-amber-400 flex flex-col justify-around overflow-hidden shadow">
+                            <div class="h-1.5 bg-amber-600 -rotate-12"></div>
+                            <div class="h-1.5 bg-amber-600 -rotate-12"></div>
+                            <div class="h-1.5 bg-amber-600 -rotate-12"></div>
+                        </div>
+                    </div>
+
+                    <!-- Candle 3 -->
+                    <div onclick="blowSingleCandle(2)" class="cursor-pointer flex flex-col items-center group">
+                        <div id="flame-2" class="h-8 flex items-center justify-center">
+                            <div class="w-4 h-7 rounded-full bg-gradient-to-t from-orange-500 via-amber-400 to-yellow-200 shadow-[0_0_18px_#f59e0b] flame-anim"></div>
+                        </div>
+                        <div class="w-4 h-14 rounded-t-md bg-gradient-to-b from-rose-100 to-rose-300 border-2 border-rose-400 flex flex-col justify-around overflow-hidden shadow">
+                            <div class="h-1.5 bg-rose-500 -rotate-12"></div>
+                            <div class="h-1.5 bg-rose-500 -rotate-12"></div>
+                            <div class="h-1.5 bg-rose-500 -rotate-12"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cake Top Tier -->
+                <div class="w-48 sm:w-56 h-16 rounded-t-3xl bg-gradient-to-b from-rose-50 to-rose-100 border-4 border-rose-300 relative shadow-md flex items-center justify-center">
+                    <div class="absolute -top-2 inset-x-2 flex justify-around text-sm">
+                        <span>🍓</span><span>🍒</span><span>🍓</span><span>🍒</span><span>🍓</span>
+                    </div>
+                    <span class="font-hand text-xl font-bold text-rose-700 mt-2">Happy Birthday ♥</span>
+                </div>
+
+                <!-- Cake Bottom Tier -->
+                <div class="w-64 sm:w-72 h-20 rounded-t-2xl bg-gradient-to-b from-rose-200 via-rose-300 to-rose-400 border-4 border-rose-400 -mt-1 relative shadow-lg flex items-center justify-around px-4">
+                    <span class="w-3 h-3 rounded-full bg-white/80"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-200"></span>
+                    <span class="w-3 h-3 rounded-full bg-white/80"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-200"></span>
+                    <span class="w-3 h-3 rounded-full bg-white/80"></span>
+                </div>
+
+                <!-- Cake Stand -->
+                <div class="w-80 sm:w-88 h-4 rounded-full bg-stone-300 border-2 border-stone-400 shadow"></div>
+            </div>
+
+            <!-- Wish Unlocked Banner (Hidden until all 3 candles blown) -->
+            <div id="wish-unlocked-banner" class="hidden p-5 rounded-2xl bg-gradient-to-r from-rose-50 via-amber-50 to-rose-50 border-2 border-rose-300 shadow-inner space-y-2 animate-bounce">
+                <p class="text-sm font-extrabold text-rose-700">🎉 YEAY! SEMUA LILIN SUDAH PADAM! 🎉</p>
+                <p class="font-hand text-2xl text-stone-800">"Semoga semua doa baik yang barusan kamu bisikkan dalam hati dikabulkan satu per satu tahun ini. Aamiin! 🤲✨"</p>
+            </div>
+
+            <!-- Candle Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <button onclick="startMicBlowDetection()" id="mic-blow-btn" class="px-5 py-2.5 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow-md flex items-center gap-2 transition active:scale-95">
+                    <span>🎤 Aktifkan Tiup Pakai Mikrofon</span>
+                </button>
+                <button onclick="blowAllCandles()" class="px-5 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-amber-100 text-xs font-bold transition">
+                    💨 Tiup Semua Lilin Sekarang
+                </button>
+                <button onclick="relightAllCandles()" class="px-4 py-2.5 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold transition">
+                    🔥 Nyalakan Lagi
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- SECTION 3: 3D FLIP POLAROID SCRAPBOOK WALL (6 MEMORIES)       -->
+        <!-- ============================================================= -->
+        <section class="space-y-6">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-amber-800">📸 POLAROID SCRAPBOOK WALL</span>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">Kumpulan Momen Favorit Kita</h3>
+                <p class="text-xs sm:text-sm text-stone-600">
+                    💡 <strong>Tips Interaktif:</strong> Ketuk foto Polaroid mana saja untuk <strong>membalik foto (3D Flip)</strong> dan membaca catatan rahasia di belakangnya!
+                </p>
+            </div>
+
+            <div id="polaroid-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 pt-2">
+                <!-- Populated dynamically by JS -->
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- SECTION 4: INTERACTIVE MEMORY JAR ("ALASAN AKU SAYANG KAMU")  -->
+        <!-- ============================================================= -->
+        <section class="bg-[#FFFDF9] rounded-[2.2rem] p-6 sm:p-10 shadow-xl border border-amber-900/15 text-center space-y-6 relative">
+            <div class="washi-sage w-36 h-7 mx-auto -mt-10 mb-2 rotate-2 rounded-sm"></div>
+
+            <div class="space-y-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-emerald-800">🫙 TOPLES KENANGAN & ALASAN SAYANG</span>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">Kenapa Harus Kamu?</h3>
+                <p class="text-xs sm:text-sm text-stone-500">Ketuk toples kaca di bawah untuk mengambil gulungan kertas berisi hal-hal kecil tentangmu yang selalu bikin aku bersyukur.</p>
+            </div>
+
+            <!-- Interactive Jar Visual -->
+            <div class="flex flex-col items-center justify-center py-2">
+                <button onclick="drawMemoryNote()" class="group relative w-40 h-48 rounded-[2.2rem] bg-gradient-to-b from-sky-50/80 via-white/90 to-rose-50/80 border-4 border-stone-300 shadow-xl flex flex-col items-center justify-between p-4 cursor-pointer hover:scale-105 transition">
+                    <!-- Jar Lid -->
+                    <div class="w-28 h-6 rounded-lg bg-amber-700 border-2 border-amber-900 -mt-7 shadow"></div>
+                    <!-- Rolled Notes Inside -->
+                    <div class="my-auto flex flex-wrap items-center justify-center gap-1.5">
+                        <span class="px-2 py-1 rounded bg-rose-200 text-[10px] rotate-6 shadow-sm">📜 #1</span>
+                        <span class="px-2 py-1 rounded bg-amber-200 text-[10px] -rotate-12 shadow-sm">💌 #2</span>
+                        <span class="px-2 py-1 rounded bg-emerald-200 text-[10px] rotate-12 shadow-sm">✨ #3</span>
+                        <span class="px-2 py-1 rounded bg-purple-200 text-[10px] -rotate-6 shadow-sm">💖 #4</span>
+                        <span class="px-2 py-1 rounded bg-sky-200 text-[10px] rotate-3 shadow-sm">🌸 #5</span>
+                    </div>
+                    <span class="text-[10px] font-mono font-extrabold text-stone-600 bg-white/90 px-2.5 py-1 rounded-full border border-stone-200 group-hover:text-rose-600">
+                        👆 Ketuk Ambil Kertas
+                    </span>
+                </button>
+            </div>
+
+            <!-- Drawn Note Display Card -->
+            <div id="jar-note-card" class="max-w-lg mx-auto p-6 rounded-2xl bg-amber-50/90 border-2 border-dashed border-amber-400 shadow-sm space-y-2 transition-all">
+                <span id="jar-note-number" class="text-[11px] font-mono font-extrabold text-amber-800 uppercase">GULUNGAN KERTAS #1 DARI 8</span>
+                <p id="jar-note-text" class="font-hand text-2xl sm:text-3xl text-stone-800 leading-snug">
+                    "Cara kamu selalu inget hal-hal kecil yang aku suka, bahkan waktu aku sendiri lupa cerita."
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- SECTION 5: HANDWRITTEN LOVE LETTER ON LINED VINTAGE PAPER     -->
+        <!-- ============================================================= -->
+        <section class="relative">
+            <div class="lined-paper rounded-[2.2rem] p-7 sm:p-12 shadow-2xl border border-amber-900/20 relative overflow-hidden">
+                <!-- Washi Tape Top Center -->
+                <div class="washi-pink w-40 h-8 mx-auto -mt-10 mb-6 -rotate-2 rounded-sm"></div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-rose-200 pb-4 mb-6">
+                    <div>
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-400">SURAT ULANG TAHUN UNTUKMU</span>
+                        <h3 class="font-hand text-3xl sm:text-4xl font-bold text-rose-700">Dear <span data-bind="recipient">Alya Sayang</span>,</h3>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="startTypewriterLetter()" class="px-3.5 py-1.5 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-extrabold transition">
+                            🖋️ Efek Ketik Ulang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Letter Body -->
+                <div id="letter-body-display" data-bind="letterText" class="font-hand text-2xl sm:text-[27px] text-stone-800 whitespace-pre-line leading-[36px] min-h-[220px]">Selamat ulang tahun ya, orang baik yang paling aku sayang.
+
+Terima kasih sudah bertahan sejauh ini, melewati banyak hal yang mungkin nggak selalu mudah, tapi kamu tetap punya senyum paling hangat yang selalu bikin hariku tenang.
+
+Di umur yang baru ini, aku nggak minta apa-apa selain semoga kamu selalu sehat, dikelilingi hal-hal baik, dan semua mimpi yang sering kamu ceritain ke aku satu per satu jadi nyata. Jangan pernah merasa sendirian ya, karena selama ada aku, kamu selalu punya tempat buat pulang dan bercerita.
+
+Happy Birthday, my favorite person. Aku sayang banget sama kamu, hari ini, besok, dan seterusnya ♥</div>
+
+                <!-- Signature Footer -->
+                <div class="mt-8 pt-4 border-t border-rose-200/70 flex items-center justify-between">
+                    <div class="text-xs font-mono text-stone-400">
+                        <span>TERTANDA DENGAN PENUH SAYANG,</span>
+                        <p data-bind="sender" class="font-hand text-3xl font-bold text-rose-700 mt-1">Raka ♥</p>
+                    </div>
+                    <div class="w-14 h-14 rounded-full bg-rose-700/90 text-amber-100 flex items-center justify-center font-serif font-bold text-xs border-2 border-amber-200/50 shadow-md rotate-12">
+                        LOVE<br>SEAL
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- SECTION 6: REAL HTML5 SCRATCH CARD VOUCHER & VIRTUAL HUG      -->
+        <!-- ============================================================= -->
+        <section class="bg-[#FFFDF9] rounded-[2.2rem] p-6 sm:p-10 shadow-xl border border-amber-900/15 text-center space-y-6">
+            <div class="space-y-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-amber-700">🎟️ SPECIAL BIRTHDAY SCRATCH VOUCHER</span>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">Gosok Kartu Foil di Bawah Buat Buka Hadiahmu!</h3>
+                <p class="text-xs sm:text-sm text-stone-500">Gunakan jari atau kursor mouse kamu untuk menggosok lapisan perak di bawah ini:</p>
+            </div>
+
+            <!-- Interactive Scratch Card Container -->
+            <div class="relative w-full max-w-md h-48 mx-auto rounded-2xl overflow-hidden border-2 border-dashed border-amber-400 shadow-lg bg-gradient-to-br from-rose-50 via-amber-50 to-pink-50 flex flex-col items-center justify-center p-5 select-none">
+                <!-- Hidden Prize Underneath -->
+                <div class="space-y-1.5 z-0">
+                    <span class="px-3 py-0.5 rounded-full bg-rose-600 text-white text-[10px] font-extrabold uppercase tracking-wider">🎁 KUPON HADIAH SPESIAL</span>
+                    <h4 data-bind="voucherTitle" class="font-serif text-xl sm:text-2xl font-bold text-stone-900">
+                        1x Dinner Romantis & Bebas Pilih Kado Pilihanmu!
+                    </h4>
+                    <p class="text-xs text-stone-600">Screenshot voucher ini & kirim ke WhatsApp aku buat klaim kapan aja ✨</p>
+                </div>
+
+                <!-- Scratch Foil Canvas Overlay -->
+                <canvas id="scratch-canvas" width="420" height="192" class="absolute inset-0 w-full h-full cursor-crosshair z-10 touch-none"></canvas>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <button onclick="resetScratchCard()" class="px-4 py-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 text-xs font-bold transition">
+                    🔄 Tutup Foil Lagi
+                </button>
+                <button onclick="sendVirtualHug()" class="px-6 py-3 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow-lg shadow-rose-600/25 transition active:scale-95">
+                    🤗 Kirim Peluk Virtual (<span id="hug-count">1</span>x)
+                </button>
+                <button onclick="replyViaWhatsApp()" class="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold shadow-lg transition">
+                    💬 Kirim Balasan ke WhatsApp
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================================================================= -->
+    <!-- FLOATING BOTTOM DEMO & CUSTOMIZER BAR                             -->
+    <!-- ================================================================= -->
+    <div id="sales-bottom-bar" class="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-rose-200 px-4 py-3 shadow-2xl">
+        <div class="max-w-3xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+                <a href="index.html#katalog" class="px-2.5 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold text-xs transition" title="Kembali ke Katalog">
+                    ← Katalog
+                </a>
+                <span class="px-2.5 py-1 rounded-lg bg-rose-100 text-rose-700 font-extrabold text-xs">Birthday Memories</span>
+                <div>
+                    <p class="text-xs font-extrabold text-stone-900">Rp49.000 <span class="text-stone-400 line-through font-normal">Rp99.000</span></p>
+                    <p class="text-[10px] text-stone-500">Template Scrapbook Interaktif · lovinly</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button onclick="toggleCustomizerDrawer()" class="px-4 py-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 font-extrabold text-xs transition flex items-center gap-1.5 shadow-sm">
+                    <span>✏️ Edit Isi & Foto</span>
+                </button>
+                <button onclick="openCheckoutModal()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs shadow-lg shadow-rose-600/25 transition active:scale-95">
+                    Pakai Template Ini →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- LIVE CUSTOMIZER MODAL DRAWER (COMPLETE PHOTO & CONTENT EDITOR)    -->
+    <!-- ================================================================= -->
+    <div id="customizer-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-white w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl border border-rose-100 flex flex-col max-h-[92vh]">
+            <!-- Header -->
+            <div class="px-6 py-4 bg-stone-900 text-white flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-amber-300">LIVE SCRAPBOOK STUDIO</span>
+                    <h4 class="font-extrabold text-base sm:text-lg">Edit Isi & Ganti Gambar Template Birthday Memories</h4>
+                </div>
+                <button onclick="toggleCustomizerDrawer()" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white">✕</button>
+            </div>
+
+            <!-- Editor Navigation Tabs -->
+            <div class="px-6 py-2.5 bg-amber-50/90 border-b border-amber-200/80 flex items-center gap-2 overflow-x-auto text-xs font-extrabold">
+                <button onclick="switchEditorTab('text')" id="ed-tab-btn-text" class="px-4 py-2 rounded-xl bg-rose-600 text-white shadow-sm whitespace-nowrap transition">
+                    1. 📝 Teks, Tanggal & Surat
+                </button>
+                <button onclick="switchEditorTab('photos')" id="ed-tab-btn-photos" class="px-4 py-2 rounded-xl bg-white text-stone-700 hover:bg-rose-50 border border-stone-200 whitespace-nowrap transition">
+                    2. 🖼️ Ganti Gambar (Foto Utama + 6 Polaroid)
+                </button>
+                <button onclick="switchEditorTab('jar')" id="ed-tab-btn-jar" class="px-4 py-2 rounded-xl bg-white text-stone-700 hover:bg-rose-50 border border-stone-200 whitespace-nowrap transition">
+                    3. 🫙 8 Pesan Toples Kenangan
+                </button>
+            </div>
+
+            <!-- Scrollable Tab Panels -->
+            <div class="p-6 overflow-y-auto space-y-5 text-xs sm:text-sm flex-1">
+
+                <!-- TAB 1: TEKS, TANGGAL & SURAT -->
+                <div id="ed-panel-text" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Nama Doi (Penerima)</label>
+                            <input id="inp-recipient" type="text" value="Alya Sayang" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                        </div>
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Nama Kamu (Pengirim)</label>
+                            <input id="inp-sender" type="text" value="Raka" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                        </div>
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Label Tanggal Amplop</label>
+                            <input id="inp-date-label" type="text" value="14 FEBRUARI" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 font-mono font-bold focus:outline-none focus:border-rose-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Tanggal Lahir Doi (Timer Hitung Detik)</label>
+                            <input id="inp-birthdate" type="date" value="2004-02-14" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                        </div>
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Tanggal Jadian / Kenal (Timer Kebersamaan)</label>
+                            <input id="inp-annivdate" type="date" value="2024-05-10" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Judul Utama Scrapbook</label>
+                            <input id="inp-headline" type="text" value="Happy Birthday, My Favorite Person!" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                        </div>
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Sub-Judul Romantis</label>
+                            <input id="inp-subheadline" type="text" value="Terima kasih sudah lahir ke dunia dan jadi bagian paling indah di hidupku ♥" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-extrabold text-stone-700 mb-1">Hadiah di Kartu Gosok (Scratch Voucher)</label>
+                        <input id="inp-voucher" type="text" value="1x Dinner Romantis & Bebas Pilih Kado Pilihanmu!" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="font-extrabold text-stone-700">Isi Surat Ulang Tahun</label>
+                            <button type="button" onclick="generateAutoRomanticLetter()" class="text-[11px] font-extrabold text-rose-600 hover:underline">
+                                ✨ Bantu Susun Surat Romantis
+                            </button>
+                        </div>
+                        <textarea id="inp-letter" rows="5" class="w-full px-3.5 py-2 rounded-xl border border-stone-200 leading-relaxed focus:outline-none focus:border-rose-500">Selamat ulang tahun ya, orang baik yang paling aku sayang.
+
+Terima kasih sudah bertahan sejauh ini, melewati banyak hal yang mungkin nggak selalu mudah, tapi kamu tetap punya senyum paling hangat yang selalu bikin hariku tenang.
+
+Di umur yang baru ini, aku nggak minta apa-apa selain semoga kamu selalu sehat, dikelilingi hal-hal baik, dan semua mimpi yang sering kamu ceritain ke aku satu per satu jadi nyata. Jangan pernah merasa sendirian ya, karena selama ada aku, kamu selalu punya tempat buat pulang dan bercerita.
+
+Happy Birthday, my favorite person. Aku sayang banget sama kamu, hari ini, besok, dan seterusnya ♥</textarea>
+                    </div>
+                </div>
+
+                <!-- TAB 2: GANTI SEMUA FOTO (HERO + 6 POLAROID INDIVIDUAL) -->
+                <div id="ed-panel-photos" class="hidden space-y-6">
+                    <!-- Fast Bulk Upload Bar -->
+                    <div class="p-4 rounded-2xl bg-rose-50/80 border border-rose-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <div>
+                            <p class="font-extrabold text-rose-900 text-xs sm:text-sm">⚡ Mau Upload Banyak Foto Sekaligus?</p>
+                            <p class="text-[11px] text-rose-700">Pilih hingga 7 foto sekaligus dari galeri, atau ganti satu per satu dengan detail di bawah ini.</p>
+                        </div>
+                        <label class="cursor-pointer shrink-0 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs shadow-sm transition">
+                            <span>📁 Pilih Banyak Foto</span>
+                            <input type="file" accept="image/*" multiple onchange="handleCustomPhotosUpload(event)" class="hidden">
+                        </label>
+                    </div>
+
+                    <!-- 1. HERO MAIN PHOTO EDITOR -->
+                    <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-0.5 rounded-full bg-amber-200 text-amber-950 font-extrabold text-[11px]">📸 FOTO UTAMA (SAMPUL ATAS)</span>
+                            <span class="text-[11px] text-stone-500 font-mono">Tampil besar di bagian pembuka</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
+                            <div class="sm:col-span-4">
+                                <div class="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-200 border border-stone-300 shadow-sm">
+                                    <img id="ed-hero-preview" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80" alt="Hero Preview" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="sm:col-span-8 space-y-2.5">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <label class="cursor-pointer px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-extrabold text-xs inline-flex items-center gap-1.5 transition">
+                                        <span>📷 Upload Foto Utama Baru</span>
+                                        <input type="file" accept="image/*" onchange="handleHeroPhotoUpload(event)" class="hidden">
+                                    </label>
+                                    <input id="inp-hero-url" type="text" placeholder="Atau tempel link URL gambar di sini..." oninput="handleHeroUrlInput(this.value)" class="flex-1 min-w-[180px] px-3 py-2 rounded-xl border border-stone-200 text-xs">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-extrabold text-stone-600 mb-1">Caption di Bawah Foto Utama:</label>
+                                    <input id="inp-hero-caption" type="text" value="Senyum favoritku yang nggak pernah bosan aku lihat setiap hari ✨" class="w-full px-3 py-2 rounded-xl border border-stone-200 text-xs font-semibold">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 6 INDIVIDUAL POLAROID CARDS EDITOR -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-extrabold text-stone-800 text-sm">🎞️ Edit 6 Foto Polaroid Satu per Satu (Depan & Catatan Belakang)</h5>
+                            <span class="text-[11px] text-stone-500">Klik tombol kamera di tiap kartu untuk ganti gambar</span>
+                        </div>
+                        <div id="ed-polaroid-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Di-render otomatis oleh renderEditorPolaroidSlots() -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: 8 PESAN TOPLES KENANGAN -->
+                <div id="ed-panel-jar" class="hidden space-y-3">
+                    <p class="text-xs text-stone-600">
+                        Ubah 8 kalimat alasan sayang yang keluar saat doi mengetuk <strong>Toples Kaca Kenangan</strong>:
+                    </p>
+                    <div id="ed-jar-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <!-- Di-render otomatis oleh renderEditorJarInputs() -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Action Bar -->
+            <div class="px-6 py-4 bg-stone-50 border-t border-stone-200 flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="switchEditorTab('photos')" class="px-3.5 py-2 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-extrabold transition">
+                        🖼️ Cek / Ganti Gambar
+                    </button>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleCustomizerDrawer()" class="px-4 py-2 rounded-xl bg-white border border-stone-200 text-xs font-bold text-stone-600">
+                        Tutup
+                    </button>
+                    <button onclick="applyCustomChanges(false)" class="px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-xs font-extrabold shadow transition">
+                        ✓ Simpan & Lihat Hasil Preview
+                    </button>
+                    <button onclick="applyCustomChanges(true)" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow-lg shadow-rose-600/25 transition">
+                        💳 Simpan & Lanjut Pembayaran →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- CHECKOUT & QRIS PAYMENT MODAL (DATA DIRI + QRIS + WA ADMIN)       -->
+    <!-- ================================================================= -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-white w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl border border-rose-100 flex flex-col max-h-[93vh]">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 bg-stone-900 text-white flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-rose-400">CHECKOUT KADO DIGITAL · LOVINLY</span>
+                    <h4 class="font-extrabold text-base sm:text-lg">Pemesanan & Pembayaran — Birthday Memories</h4>
+                </div>
+                <button onclick="closeCheckoutModal()" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white">✕</button>
+            </div>
+
+            <!-- Modal Body: 2 Columns (Left: Customer Data, Right: QRIS & WA Admin) -->
+            <div class="p-6 overflow-y-auto grid grid-cols-1 lg:grid-cols-12 gap-6 text-xs sm:text-sm">
+
+                <!-- KOLOM KIRI: DATA DIRI CUSTOMER & CUSTOM LINK -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-between">
+                        <div>
+                            <p class="font-extrabold text-rose-950 text-xs">✨ Isi Kado Sudah Siap!</p>
+                            <p class="text-[11px] text-rose-700">Untuk: <strong id="chk-summary-recipient">Alya Sayang</strong> · Dari: <strong id="chk-summary-sender">Raka</strong></p>
+                        </div>
+                        <button onclick="closeCheckoutModal(); toggleCustomizerDrawer();" class="px-3 py-1.5 rounded-xl bg-white hover:bg-rose-100 text-rose-700 font-extrabold text-[11px] border border-rose-200 transition">
+                            ✏️ Ubah Isi/Foto
+                        </button>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h5 class="font-extrabold text-stone-900 text-sm flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] flex items-center justify-center">1</span>
+                            <span>Data Diri Customer (Pemesan)</span>
+                        </h5>
+
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Nama Lengkap Kamu <span class="text-rose-600">*</span></label>
+                            <input id="cust-name" type="text" placeholder="Contoh: Raka Pratama" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block font-extrabold text-stone-700 mb-1">Nomor WhatsApp Aktif <span class="text-rose-600">*</span></label>
+                                <input id="cust-wa" type="tel" placeholder="Contoh: 081234567890" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                            </div>
+                            <div>
+                                <label class="block font-extrabold text-stone-700 mb-1">Email (Untuk Kirim Link Kado)</label>
+                                <input id="cust-email" type="email" placeholder="nama@email.com" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 font-semibold focus:outline-none focus:border-rose-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-extrabold text-stone-700 mb-1">Custom Nama Link Website Kado <span class="text-rose-600">*</span></label>
+                            <div class="flex items-center rounded-xl border border-stone-200 overflow-hidden bg-stone-50">
+                                <span class="px-3 text-xs font-mono text-stone-500">lovinly/</span>
+                                <input id="cust-slug" type="text" value="birthday-alya" oninput="syncCustomSlugPreview(this.value)" class="w-full px-2.5 py-2.5 bg-white text-xs sm:text-sm font-mono font-bold text-rose-700 focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tambahan Add-On Opsional -->
+                    <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-2.5">
+                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500">Tambahan Opsional (Add-On):</p>
+
+                        <label class="flex items-center justify-between text-xs font-semibold cursor-pointer py-1">
+                            <span class="flex items-center gap-2">
+                                <input type="checkbox" id="chk-addon-wm" onchange="recalcCheckoutTotal()" class="rounded text-rose-600">
+                                <span>Hapus Watermark Lovinly</span>
+                            </span>
+                            <span class="font-extrabold text-stone-800">+Rp10.000</span>
+                        </label>
+
+                        <label class="flex items-center justify-between text-xs font-semibold cursor-pointer py-1">
+                            <span class="flex items-center gap-2">
+                                <input type="checkbox" id="chk-addon-qr" onchange="recalcCheckoutTotal()" class="rounded text-rose-600">
+                                <span>QR Code Resolusi Tinggi Siap Cetak</span>
+                            </span>
+                            <span class="font-extrabold text-stone-800">+Rp9.000</span>
+                        </label>
+
+                        <label class="flex items-center justify-between text-xs font-semibold cursor-pointer py-1">
+                            <span class="flex items-center gap-2">
+                                <input type="checkbox" id="chk-addon-keychain" onchange="recalcCheckoutTotal()" class="rounded text-rose-600">
+                                <span>💖 Heart QR Keychain 3D Fisik (Dikirim ke Alamatmu)</span>
+                            </span>
+                            <span class="font-extrabold text-rose-600">+Rp35.000</span>
+                        </label>
+
+                        <!-- Muncul otomatis jika pilih Keychain Fisik -->
+                        <div id="chk-keychain-address-box" class="hidden pt-2 border-t border-stone-200 space-y-2">
+                            <label class="block text-[11px] font-extrabold text-stone-700">Pilih Warna Keychain & Alamat Pengiriman:</label>
+                            <select id="cust-keychain-color" class="w-full px-3 py-2 rounded-xl border border-stone-200 text-xs font-bold bg-white">
+                                <option value="Pink Blossom">💖 Pink Blossom</option>
+                                <option value="Crimson Ruby">❤️ Crimson Ruby</option>
+                                <option value="Lilac Dream">💜 Lilac Dream</option>
+                                <option value="Sky Blue">💙 Sky Blue</option>
+                                <option value="Matcha Mint">💚 Matcha Mint</option>
+                                <option value="Midnight Black">🖤 Midnight Black</option>
+                            </select>
+                            <textarea id="cust-address" rows="2" placeholder="Tulis alamat lengkap pengiriman Keychain (Jalan, Kecamatan, Kota, Kode Pos)..." class="w-full px-3 py-2 rounded-xl border border-stone-200 text-xs"></textarea>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-extrabold text-stone-700 mb-1">Catatan Tambahan untuk Admin (Opsional)</label>
+                        <input id="cust-note" type="text" placeholder="Contoh: Tolong aktifkan sebelum jam 8 malam ya min..." class="w-full px-3.5 py-2 rounded-xl border border-stone-200 text-xs">
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN: PEMBAYARAN QRIS & WHATSAPP ADMIN -->
+                <div class="lg:col-span-5 space-y-4">
+                    <h5 class="font-extrabold text-stone-900 text-sm flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] flex items-center justify-center">2</span>
+                        <span>Pembayaran QRIS & Konfirmasi Admin</span>
+                    </h5>
+
+                    <div class="p-5 rounded-3xl bg-white border-2 border-rose-500 shadow-md text-center space-y-3">
+                        <div class="flex items-center justify-between border-b border-stone-100 pb-2.5">
+                            <span id="qris-merchant-name" class="text-xs font-extrabold text-stone-800">LOVINLY OFFICIAL</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-700 font-extrabold text-[10px]">QRIS ALL PAYMENT</span>
+                        </div>
+
+                        <p class="text-[11px] text-stone-500 leading-relaxed">
+                            Scan kode QRIS di bawah menggunakan <strong>BCA, Mandiri, BRI, BNI, GoPay, OVO, DANA, ShopeePay</strong>, atau aplikasi pembayaran lainnya:
+                        </p>
+
+                        <!-- Gambar QRIS -->
+                        <div class="relative mx-auto w-48 h-48 rounded-2xl border-2 border-stone-200 p-2 bg-white shadow-inner flex items-center justify-center">
+                            <img id="qris-image-display" src="https://placehold.co/360x360/18181b/ffffff?text=SCAN+QRIS+LOVINLY" alt="QRIS Lovinly" class="w-full h-full object-contain rounded-xl">
+                        </div>
+
+                        <!-- Total Nominal & Salin -->
+                        <div class="p-3 rounded-2xl bg-rose-50/80 border border-rose-200 flex items-center justify-between">
+                            <div class="text-left">
+                                <span class="block text-[10px] font-bold text-stone-500 uppercase">Total Bayar QRIS:</span>
+                                <span id="chk-total-price" class="text-xl font-extrabold text-rose-600">Rp49.000</span>
+                            </div>
+                            <button type="button" onclick="copyTotalNominal()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-stone-100 text-stone-800 font-extrabold text-[11px] border border-stone-200 shadow-sm transition">
+                                📋 Salin Nominal
+                            </button>
+                        </div>
+
+                        <!-- Info WhatsApp Admin -->
+                        <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-left space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800">📞 WHATSAPP ADMIN RESMI</span>
+                                <span class="text-[10px] font-mono font-bold text-emerald-700" id="admin-wa-display">+62 812-3456-7890</span>
+                            </div>
+                            <p class="text-[11px] text-emerald-900 leading-snug">
+                                Setelah scan QRIS, klik tombol konfirmasi di bawah. Semua teks kado yang kamu edit otomatis terkirim ke WA Admin, lalu tinggal kirimkan foto & bukti bayar QRIS di chat!
+                            </p>
+                        </div>
+
+                        <!-- Tombol Utama Konfirmasi Pembayaran ke WA Admin -->
+                        <button type="button" onclick="submitOrderToWhatsApp()" class="w-full py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 transition active:scale-95">
+                            <span>✅ Sudah Bayar · Kirim ke WhatsApp Admin</span>
+                        </button>
+
+                        <button type="button" onclick="askAdminDirectly()" class="w-full py-2.5 px-4 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold text-xs transition">
+                            💬 Tanya Admin via WhatsApp Dulu
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification -->
+    <div id="toast-box" class="fixed top-16 right-4 z-50 hidden bg-stone-900 text-amber-100 px-4 py-2.5 rounded-2xl shadow-xl text-xs font-bold"></div>
+
+    <!-- ================================================================= -->
+    <!-- INTERACTIVE ENGINE SCRIPT                                         -->
+    <!-- ================================================================= -->
+    <script>
+        // =================================================================
+        // 0. PUSAT PENGATURAN PEMBAYARAN QRIS & WHATSAPP ADMIN
+        // =================================================================
+        const PAYMENT_CONFIG = {
+            whatsappNumber: '6281298110273', // Ganti dengan nomor WA Admin Anda (awalan 628)
+            whatsappDisplay: '+62 812-9811-0273',
+            merchantName: 'LOVINLY OFFICIAL',
+            templateName: 'Birthday Memories',
+            basePrice: 49000,
+            qrisImageUrl: 'https://placehold.co/360x360/18181b/ffffff?text=SCAN+QRIS+LOVINLY' // Ganti dengan URL/file gambar QRIS Anda
+        };
+
+        // =================================================================
+        // 1. TEMPLATE DATA CONFIGURATION
+        // =================================================================
+        const MEMORY_STATE = {
+            recipient: 'Alya Sayang',
+            sender: 'Raka',
+            slug: 'birthday-memories',
+            birthDate: new Date('2004-02-14T00:00:00'),
+            togetherDate: new Date('2024-05-10T00:00:00'),
+            bdayDateLabel: '14 FEBRUARI',
+            headline: 'Happy Birthday, My Favorite Person!',
+            subheadline: 'Terima kasih sudah lahir ke dunia dan jadi bagian paling indah di hidupku ♥',
+            heroPhoto: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80',
+            heroCaption: 'Senyum favoritku yang nggak pernah bosan aku lihat setiap hari ✨',
+            voucherTitle: '1x Dinner Romantis & Bebas Pilih Kado Pilihanmu!',
+            letterText: `Selamat ulang tahun ya, orang baik yang paling aku sayang.\n\nTerima kasih sudah bertahan sejauh ini, melewati banyak hal yang mungkin nggak selalu mudah, tapi kamu tetap punya senyum paling hangat yang selalu bikin hariku tenang.\n\nDi umur yang baru ini, aku nggak minta apa-apa selain semoga kamu selalu sehat, dikelilingi hal-hal baik, dan semua mimpi yang sering kamu ceritain ke aku satu per satu jadi nyata. Jangan pernah merasa sendirian ya, karena selama ada aku, kamu selalu punya tempat buat pulang dan bercerita.\n\nHappy Birthday, my favorite person. Aku sayang banget sama kamu, hari ini, besok, dan seterusnya ♥`,
+            polaroids: [
+                {
+                    img: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80',
+                    caption: 'Pertama kali jalan bareng ♥',
+                    date: '10 Mei 2024',
+                    secretNote: 'Waktu ini sebenarnya aku deg-degan parah, tapi pas lihat kamu senyum semuanya langsung cair ✨',
+                    tape: 'washi-pink',
+                    tilt: '-rotate-2'
+                },
+                {
+                    img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80',
+                    caption: 'Sunset favorit kita 🌅',
+                    date: '22 Juli 2024',
+                    secretNote: 'Langit sore itu bagus banget, tapi jujur aku lebih banyak curi-curi pandang ke arah kamu.',
+                    tape: 'washi-amber',
+                    tilt: 'rotate-2'
+                },
+                {
+                    img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80',
+                    caption: 'Ketawa tanpa henti 😂',
+                    date: '19 September 2024',
+                    secretNote: 'Terima kasih ya selalu bisa bikin hari yang capek berubah jadi penuh tawa kayak gini.',
+                    tape: 'washi-sage',
+                    tilt: '-rotate-1'
+                },
+                {
+                    img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80',
+                    caption: 'Late night coffee & cerita ☕',
+                    date: '04 November 2024',
+                    secretNote: 'Ngobrol berjam-jam sama kamu nggak pernah kerasa cukup. Selalu ada aja topik seru kita.',
+                    tape: 'washi-pink',
+                    tilt: 'rotate-1'
+                },
+                {
+                    img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80',
+                    caption: 'Bunga buat si paling manis 🌸',
+                    date: '02 Januari 2025',
+                    secretNote: 'Semoga kamu selalu mekar dan bahagia terus ke mana pun langkah kakimu pergi.',
+                    tape: 'washi-amber',
+                    tilt: '-rotate-2'
+                },
+                {
+                    img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80',
+                    caption: 'Hari spesialmu tahun ini 🎂',
+                    date: 'Hari Ulang Tahunmu',
+                    secretNote: 'Selamat bertambah usia! Mari kita buat lebih banyak lagi foto Polaroid di tahun-tahun berikutnya ♥',
+                    tape: 'washi-sage',
+                    tilt: 'rotate-2'
+                }
+            ],
+            jarReasons: [
+                'Cara kamu selalu inget hal-hal kecil yang aku suka, bahkan waktu aku sendiri lupa cerita.',
+                'Suara ketawa kamu yang nular banget dan langsung bikin mood aku naik 100%.',
+                'Kesabaran kamu setiap kali dengerin keluh kesahku seharian tanpa pernah menghakimi.',
+                'Tatapan mata kamu waktu lagi antusias cerita tentang hal yang kamu sukai.',
+                'Perhatian kecilmu: selalu ngingetin makan dan nanya udah sampai rumah belum.',
+                'Cara kamu bikin aku merasa jadi orang paling beruntung setiap hari.',
+                'Kebaikan hati kamu ke orang-orang di sekitarmu yang bikin aku makin kagum.',
+                'Karena bersama kamu, hal sesederhana beli jajanan pinggir jalan pun terasa spesial ♥'
+            ]
+        };
+
+        let activeTimerMode = 'birth';
+        let candlesLit = [true, true, true];
+        let currentJarIdx = 0;
+        let hugCount = 1;
+        let audioCtx = null;
+        let isMusicPlaying = false;
+        let musicLoopInterval = null;
+        let micStream = null;
+        let micAnalyserInterval = null;
+
+        // =================================================================
+        // 2. TOAST HELPER & SYNTHESIZED ROMANTIC MUSIC BOX
+        // =================================================================
+        function showToast(msg) {
+            const box = document.getElementById('toast-box');
+            if (!box) return;
+            box.textContent = msg;
+            box.classList.remove('hidden');
+            clearTimeout(window._tTimer);
+            window._tTimer = setTimeout(() => box.classList.add('hidden'), 3200);
+        }
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Plays a soft romantic music-box melody ("Happy Birthday" + Warm Arpeggio)
+        function playMusicBoxPhrase() {
+            try {
+                initAudioContext();
+                const melody = [
+                    { f: 392.00, d: 0.0 },  // G4
+                    { f: 392.00, d: 0.35 }, // G4
+                    { f: 440.00, d: 0.7 },  // A4
+                    { f: 392.00, d: 1.2 },  // G4
+                    { f: 523.25, d: 1.7 },  // C5
+                    { f: 493.88, d: 2.2 },  // B4
+                    { f: 392.00, d: 3.0 },  // G4
+                    { f: 392.00, d: 3.35 }, // G4
+                    { f: 440.00, d: 3.7 },  // A4
+                    { f: 392.00, d: 4.2 },  // G4
+                    { f: 587.33, d: 4.7 },  // D5
+                    { f: 523.25, d: 5.2 }   // C5
+                ];
+                melody.forEach(note => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.value = note.f;
+                    const startTime = audioCtx.currentTime + note.d;
+                    gain.gain.setValueAtTime(0.055, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0008, startTime + 0.65);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(startTime);
+                    osc.stop(startTime + 0.65);
+                });
+            } catch (e) {}
+        }
+
+        function toggleBackgroundMusic() {
+            const disc = document.getElementById('vinyl-disc');
+            const label = document.getElementById('music-status-text');
+            if (!isMusicPlaying) {
+                isMusicPlaying = true;
+                playMusicBoxPhrase();
+                clearInterval(musicLoopInterval);
+                musicLoopInterval = setInterval(() => {
+                    if (isMusicPlaying) playMusicBoxPhrase();
+                }, 6400);
+                if (disc) disc.classList.remove('vinyl-paused');
+                if (label) label.textContent = '🎵 Playing: Birthday Acoustic';
+            } else {
+                isMusicPlaying = false;
+                clearInterval(musicLoopInterval);
+                if (disc) disc.classList.add('vinyl-paused');
+                if (label) label.textContent = '⏸️ Musik Dijeda';
+            }
+        }
+
+        // =================================================================
+        // 3. UNLOCK OPENING GATE
+        // =================================================================
+        function unlockScrapbookGate() {
+            const gate = document.getElementById('opening-gate');
+            if (gate) {
+                gate.classList.add('opacity-0', 'scale-105', 'pointer-events-none');
+                setTimeout(() => gate.classList.add('hidden'), 900);
+            }
+            if (!isMusicPlaying) {
+                toggleBackgroundMusic();
+            }
+            burstCelebrationParticles(30);
+        }
+
+        // =================================================================
+        // 4. LIVE REAL-TIME SECOND COUNTER
+        // =================================================================
+        function switchTimerMode(mode) {
+            activeTimerMode = mode;
+            const bTab = document.getElementById('timer-tab-birth');
+            const tTab = document.getElementById('timer-tab-together');
+            const cap = document.getElementById('timer-caption');
+
+            if (mode === 'birth') {
+                bTab.className = 'px-4 py-1.5 rounded-full text-xs font-extrabold bg-rose-600 text-white shadow-sm transition';
+                tTab.className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-stone-100 text-stone-600 hover:bg-rose-50 transition';
+                if (cap) cap.textContent = 'Dunia udah jadi tempat yang jauh lebih indah sejak kamu lahir selama:';
+            } else {
+                tTab.className = 'px-4 py-1.5 rounded-full text-xs font-extrabold bg-rose-600 text-white shadow-sm transition';
+                bTab.className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-stone-100 text-stone-600 hover:bg-rose-50 transition';
+                if (cap) cap.textContent = 'Detik demi detik bahagia sejak cerita kita dimulai:';
+            }
+            updateLiveCounter();
+        }
+
+        function updateLiveCounter() {
+            const target = activeTimerMode === 'birth' ? MEMORY_STATE.birthDate : MEMORY_STATE.togetherDate;
+            const now = new Date();
+            const diffMs = Math.max(0, now - target);
+
+            const totalSeconds = Math.floor(diffMs / 1000);
+            const days = Math.floor(totalSeconds / 86400);
+            const hours = Math.floor((totalSeconds % 86400) / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+
+            const dEl = document.getElementById('cnt-days');
+            const hEl = document.getElementById('cnt-hours');
+            const mEl = document.getElementById('cnt-mins');
+            const sEl = document.getElementById('cnt-secs');
+
+            if (dEl) dEl.textContent = days.toLocaleString('id-ID');
+            if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+            if (mEl) mEl.textContent = String(mins).padStart(2, '0');
+            if (sEl) sEl.textContent = String(secs).padStart(2, '0');
+        }
+
+        // =================================================================
+        // 5. INTERACTIVE CANDLE BLOWING (TAP + REAL MICROPHONE BLOW)
+        // =================================================================
+        function blowSingleCandle(idx) {
+            if (!candlesLit[idx]) return;
+            candlesLit[idx] = false;
+            const flameHolder = document.getElementById(`flame-${idx}`);
+            if (flameHolder) {
+                flameHolder.innerHTML = `<span class="text-lg smoke-anim">💨</span>`;
+            }
+
+            if (candlesLit.every(c => !c)) {
+                const banner = document.getElementById('wish-unlocked-banner');
+                if (banner) banner.classList.remove('hidden');
+                burstCelebrationParticles(65);
+                playMusicBoxPhrase();
+                showToast('🎉 Selamat Ulang Tahun! Semoga semua doamu terkabul!');
+                stopMicBlowDetection();
+            }
+        }
+
+        function blowAllCandles() {
+            [0, 1, 2].forEach((idx, i) => {
+                setTimeout(() => blowSingleCandle(idx), i * 180);
+            });
+        }
+
+        function relightAllCandles() {
+            candlesLit = [true, true, true];
+            [0, 1, 2].forEach(idx => {
+                const flameHolder = document.getElementById(`flame-${idx}`);
+                if (flameHolder) {
+                    flameHolder.innerHTML = `<div class="w-4 h-7 rounded-full bg-gradient-to-t from-orange-500 via-amber-400 to-yellow-200 shadow-[0_0_18px_#f59e0b] flame-anim"></div>`;
+                }
+            });
+            const banner = document.getElementById('wish-unlocked-banner');
+            if (banner) banner.classList.add('hidden');
+        }
+
+        async function startMicBlowDetection() {
+            const btn = document.getElementById('mic-blow-btn');
+            try {
+                micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                initAudioContext();
+                const source = audioCtx.createMediaStreamSource(micStream);
+                const analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 256;
+                source.connect(analyser);
+                const data = new Uint8Array(analyser.frequencyBinCount);
+
+                if (btn) {
+                    btn.innerHTML = '<span>🌬️ Tiup Sekarang ke Mikrofon HP/Laptop...</span>';
+                    btn.classList.replace('bg-rose-600', 'bg-emerald-600');
+                }
+                showToast('🎤 Mikrofon aktif! Silakan tiup ke arah layar sekarang 💨');
+
+                clearInterval(micAnalyserInterval);
+                micAnalyserInterval = setInterval(() => {
+                    analyser.getByteFrequencyData(data);
+                    const avg = data.reduce((a, b) => a + b, 0) / data.length;
+                    if (avg > 42) {
+                        blowAllCandles();
+                    }
+                }, 120);
+            } catch (err) {
+                showToast('💡 Izin mikrofon tidak aktif, kamu bisa ketuk lilinnya langsung ya!');
+            }
+        }
+
+        function stopMicBlowDetection() {
+            clearInterval(micAnalyserInterval);
+            if (micStream) {
+                micStream.getTracks().forEach(t => t.stop());
+                micStream = null;
+            }
+            const btn = document.getElementById('mic-blow-btn');
+            if (btn) {
+                btn.innerHTML = '<span>🎤 Aktifkan Tiup Pakai Mikrofon</span>';
+                btn.classList.replace('bg-emerald-600', 'bg-rose-600');
+            }
+        }
+
+        // =================================================================
+        // 6. 3D FLIP POLAROID SCRAPBOOK WALL
+        // =================================================================
+        function renderPolaroidWall() {
+            const grid = document.getElementById('polaroid-grid');
+            if (!grid) return;
+
+            grid.innerHTML = MEMORY_STATE.polaroids.map((item, idx) => `
+                <div onclick="this.classList.toggle('flipped')" class="perspective-1000 h-80 cursor-pointer select-none ${item.tilt} hover:rotate-0 transition-transform duration-300">
+                    <div class="flip-card-inner">
+                        <!-- FRONT OF POLAROID -->
+                        <div class="flip-card-front bg-white rounded-2xl p-3.5 pb-5 shadow-lg border border-stone-200 flex flex-col justify-between">
+                            <div class="${item.tape} w-24 h-6 mx-auto -mt-6 mb-1 rounded-sm"></div>
+                            <div class="relative rounded-xl overflow-hidden h-52 bg-stone-100">
+                                <img src="${item.img}" alt="${item.caption}" class="w-full h-full object-cover">
+                                <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-black/55 text-white text-[9px] font-mono">
+                                    🔄 Ketuk Balik
+                                </span>
+                            </div>
+                            <div class="text-center pt-2">
+                                <p class="font-hand text-2xl text-stone-800 leading-none">${item.caption}</p>
+                                <span class="text-[10px] font-mono text-stone-400">${item.date}</span>
+                            </div>
+                        </div>
+
+                        <!-- BACK OF POLAROID (SECRET HANDWRITTEN NOTE) -->
+                        <div class="flip-card-back bg-[#FFFDF7] rounded-2xl p-6 shadow-xl border-2 border-dashed border-rose-300 flex flex-col justify-between text-center">
+                            <div class="flex items-center justify-between text-[10px] font-mono text-stone-400 border-b border-stone-200 pb-2">
+                                <span>CATATAN DI BALIK FOTO #${idx + 1}</span>
+                                <span>${item.date}</span>
+                            </div>
+                            <p class="font-hand text-2xl text-stone-800 leading-snug my-auto">
+                                "${item.secretNote}"
+                            </p>
+                            <div class="text-[10px] font-extrabold text-rose-600 bg-rose-50 rounded-full py-1">
+                                ↩ Ketuk lagi untuk lihat foto
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // =================================================================
+        // 7. MEMORY JAR & TYPEWRITER LETTER
+        // =================================================================
+        function drawMemoryNote() {
+            currentJarIdx = (currentJarIdx + 1) % MEMORY_STATE.jarReasons.length;
+            const numEl = document.getElementById('jar-note-number');
+            const txtEl = document.getElementById('jar-note-text');
+            const card = document.getElementById('jar-note-card');
+
+            if (card) {
+                card.classList.add('scale-95', 'opacity-70');
+                setTimeout(() => card.classList.remove('scale-95', 'opacity-70'), 180);
+            }
+            if (numEl) numEl.textContent = `GULUNGAN KERTAS #${currentJarIdx + 1} DARI ${MEMORY_STATE.jarReasons.length}`;
+            if (txtEl) txtEl.textContent = `"${MEMORY_STATE.jarReasons[currentJarIdx]}"`;
+        }
+
+        function startTypewriterLetter() {
+            const el = document.getElementById('letter-body-display');
+            if (!el) return;
+            const fullText = MEMORY_STATE.letterText;
+            el.textContent = '';
+            let i = 0;
+            clearInterval(window._typeInterval);
+            window._typeInterval = setInterval(() => {
+                el.textContent += fullText.charAt(i);
+                i++;
+                if (i >= fullText.length) clearInterval(window._typeInterval);
+            }, 24);
+        }
+
+        // =================================================================
+        // 8. HTML5 CANVAS FOIL SCRATCH VOUCHER
+        // =================================================================
+        function initScratchCard() {
+            const canvas = document.getElementById('scratch-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.style.opacity = '1';
+            canvas.style.pointerEvents = 'auto';
+
+            // Paint Metallic Gold/Silver Foil
+            const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            grad.addColorStop(0, '#D6D3D1');
+            grad.addColorStop(0.5, '#F5F5F4');
+            grad.addColorStop(1, '#A8A29E');
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Foil Text
+            ctx.fillStyle = '#57534E';
+            ctx.font = '800 15px "Plus Jakarta Sans", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('✨ GOSOK DI SINI UNTUK BUKA VOUCHER ✨', canvas.width / 2, canvas.height / 2 - 4);
+            ctx.font = '600 11px "JetBrains Mono", monospace';
+            ctx.fillText('BIRTHDAY MEMORIES SPECIAL GIFT', canvas.width / 2, canvas.height / 2 + 18);
+
+            let isDrawing = false;
+
+            const scratch = (x, y) => {
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 26, 0, Math.PI * 2);
+                ctx.fill();
+            };
+
+            const getCoords = (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: (clientX - rect.left) * (canvas.width / rect.width),
+                    y: (clientY - rect.top) * (canvas.height / rect.height)
+                };
+            };
+
+            canvas.onmousedown = (e) => { isDrawing = true; const c = getCoords(e); scratch(c.x, c.y); };
+            canvas.onmousemove = (e) => { if (!isDrawing) return; const c = getCoords(e); scratch(c.x, c.y); };
+            window.addEventListener('mouseup', () => { isDrawing = false; });
+
+            canvas.ontouchstart = (e) => { isDrawing = true; const c = getCoords(e); scratch(c.x, c.y); };
+            canvas.ontouchmove = (e) => { if (!isDrawing) return; e.preventDefault(); const c = getCoords(e); scratch(c.x, c.y); };
+            canvas.ontouchend = () => { isDrawing = false; };
+        }
+
+        function resetScratchCard() {
+            initScratchCard();
+            showToast('✨ Lapisan foil voucher berhasil ditutup kembali!');
+        }
+
+        function sendVirtualHug() {
+            hugCount++;
+            const el = document.getElementById('hug-count');
+            if (el) el.textContent = hugCount;
+            burstCelebrationParticles(25);
+            showToast(`🤗 Pelukan virtual ke-${hugCount} terkirim untuk ${MEMORY_STATE.sender}!`);
+        }
+
+        function replyViaWhatsApp() {
+            const text = `Hai ${MEMORY_STATE.sender}! Aku baru aja buka scrapbook Birthday Memories dari kamu. Makasih banyak yaa, aku terharu banget! 🎂💖`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // =================================================================
+        // 9. COMPLETE LIVE CUSTOMIZER DRAWER (HERO + 6 POLAROIDS + JAR)
+        // =================================================================
+        function toggleCustomizerDrawer() {
+            const modal = document.getElementById('customizer-modal');
+            if (!modal) return;
+            const willOpen = modal.classList.contains('hidden');
+            if (willOpen) {
+                renderEditorPolaroidSlots();
+                renderEditorJarInputs();
+                const heroPrev = document.getElementById('ed-hero-preview');
+                if (heroPrev) heroPrev.src = MEMORY_STATE.heroPhoto;
+            } else {
+                // Simpan otomatis setiap perubahan saat customer menutup jendela edit
+                saveEditorInputsToState();
+                syncAllBindingsFromState();
+            }
+            modal.classList.toggle('hidden');
+        }
+
+        function switchEditorTab(tabName) {
+            saveEditorInputsToState();
+            ['text', 'photos', 'jar'].forEach(t => {
+                const panel = document.getElementById(`ed-panel-${t}`);
+                const btn = document.getElementById(`ed-tab-btn-${t}`);
+                if (panel) panel.classList.toggle('hidden', t !== tabName);
+                if (btn) {
+                    btn.className = (t === tabName)
+                        ? 'px-4 py-2 rounded-xl bg-rose-600 text-white shadow-sm whitespace-nowrap transition'
+                        : 'px-4 py-2 rounded-xl bg-white text-stone-700 hover:bg-rose-50 border border-stone-200 whitespace-nowrap transition';
+                }
+            });
+        }
+
+        function renderEditorPolaroidSlots() {
+            const container = document.getElementById('ed-polaroid-list');
+            if (!container) return;
+
+            container.innerHTML = MEMORY_STATE.polaroids.map((p, idx) => `
+                <div class="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 font-extrabold text-[11px]">
+                            Polaroid #${idx + 1}
+                        </span>
+                        <label class="cursor-pointer px-3 py-1 rounded-lg bg-stone-900 hover:bg-stone-800 text-white font-extrabold text-[11px] inline-flex items-center gap-1 transition">
+                            <span>📷 Ganti Foto #${idx + 1}</span>
+                            <input type="file" accept="image/*" onchange="handleSinglePolaroidUpload(event, ${idx})" class="hidden">
+                        </label>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-3 items-center">
+                        <div class="col-span-4">
+                            <div class="rounded-xl overflow-hidden aspect-square bg-stone-200 border border-stone-300">
+                                <img id="ed-pol-img-${idx}" src="${p.img}" alt="Polaroid ${idx + 1}" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="col-span-8 space-y-1.5">
+                            <input id="ed-pol-url-${idx}" type="text" placeholder="Atau tempel URL foto #${idx + 1}..." oninput="handleSinglePolaroidUrl(${idx}, this.value)" class="w-full px-2.5 py-1.5 rounded-lg border border-stone-200 text-[11px]">
+                            <input id="ed-pol-cap-${idx}" type="text" value="${p.caption}" oninput="MEMORY_STATE.polaroids[${idx}].caption = this.value; renderPolaroidWall();" placeholder="Caption depan foto..." class="w-full px-2.5 py-1.5 rounded-lg border border-stone-200 text-xs font-bold">
+                            <input id="ed-pol-date-${idx}" type="text" value="${p.date}" oninput="MEMORY_STATE.polaroids[${idx}].date = this.value; renderPolaroidWall();" placeholder="Tanggal / Momen..." class="w-full px-2.5 py-1.5 rounded-lg border border-stone-200 text-[11px] font-mono">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-extrabold text-stone-500 uppercase mb-0.5">Catatan Rahasia di Balik Polaroid #${idx + 1}:</label>
+                        <textarea id="ed-pol-note-${idx}" rows="2" oninput="MEMORY_STATE.polaroids[${idx}].secretNote = this.value; renderPolaroidWall();" class="w-full px-2.5 py-1.5 rounded-lg border border-stone-200 text-xs">${p.secretNote}</textarea>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderEditorJarInputs() {
+            const container = document.getElementById('ed-jar-list');
+            if (!container) return;
+            container.innerHTML = MEMORY_STATE.jarReasons.map((reason, idx) => `
+                <div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
+                    <label class="block text-[10px] font-mono font-extrabold text-amber-800">KERTAS TOPLES #${idx + 1}</label>
+                    <textarea id="ed-jar-reason-${idx}" rows="2" oninput="MEMORY_STATE.jarReasons[${idx}] = this.value;" class="w-full px-2.5 py-1.5 rounded-lg border border-stone-200 text-xs">${reason}</textarea>
+                </div>
+            `).join('');
+        }
+
+        function renderEditorJarInputs() {
+            const container = document.getElementById('ed-jar-list');
+            if (!container) return;
+            container.innerHTML = MEMORY_STATE.jarReasons.map((reason, idx) => `
+                <div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
+                    <label class="block text-[10px] font-mono font-extrabold text-amber-800">KERTAS TOPLES #${idx + 1}</label>
+                    <textarea id="ed-jar-reason-${idx}" rows="2" class="w-full px-2.5 py-1.5 rounded-lg border border-stone-200 text-xs">${reason}</textarea>
+                </div>
+            `).join('');
+        }
+
+        // Ganti Foto Utama (Hero) via File Upload
+        function handleHeroPhotoUpload(event) {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                MEMORY_STATE.heroPhoto = e.target.result;
+                const prev = document.getElementById('ed-hero-preview');
+                const mainHero = document.getElementById('hero-main-photo');
+                if (prev) prev.src = e.target.result;
+                if (mainHero) mainHero.src = e.target.result;
+                showToast('📸 Foto Utama berhasil diganti!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Ganti Foto Utama (Hero) via URL
+        function handleHeroUrlInput(url) {
+            const clean = (url || '').trim();
+            if (!clean) return;
+            MEMORY_STATE.heroPhoto = clean;
+            const prev = document.getElementById('ed-hero-preview');
+            const mainHero = document.getElementById('hero-main-photo');
+            if (prev) prev.src = clean;
+            if (mainHero) mainHero.src = clean;
+        }
+
+        // Ganti Foto Polaroid Spesifik (#1 - #6) via File Upload
+        function handleSinglePolaroidUpload(event, idx) {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (MEMORY_STATE.polaroids[idx]) {
+                    MEMORY_STATE.polaroids[idx].img = e.target.result;
+                }
+                const thumb = document.getElementById(`ed-pol-img-${idx}`);
+                if (thumb) thumb.src = e.target.result;
+                renderPolaroidWall();
+                showToast(`📸 Foto Polaroid #${idx + 1} berhasil diganti!`);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Ganti Foto Polaroid Spesifik (#1 - #6) via URL
+        function handleSinglePolaroidUrl(idx, url) {
+            const clean = (url || '').trim();
+            if (!clean || !MEMORY_STATE.polaroids[idx]) return;
+            MEMORY_STATE.polaroids[idx].img = clean;
+            const thumb = document.getElementById(`ed-pol-img-${idx}`);
+            if (thumb) thumb.src = clean;
+            renderPolaroidWall();
+        }
+
+        // Bulk Upload: Ganti Foto Utama + 6 Polaroid Sekaligus
+        function handleCustomPhotosUpload(event) {
+            const files = Array.from(event.target.files || []);
+            if (!files.length) return;
+            files.slice(0, 7).forEach((file, idx) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    if (idx === 0) {
+                        MEMORY_STATE.heroPhoto = e.target.result;
+                        const heroImg = document.getElementById('hero-main-photo');
+                        const heroPrev = document.getElementById('ed-hero-preview');
+                        if (heroImg) heroImg.src = e.target.result;
+                        if (heroPrev) heroPrev.src = e.target.result;
+                    }
+                    const polIdx = idx < 6 ? idx : 5;
+                    if (MEMORY_STATE.polaroids[polIdx]) {
+                        MEMORY_STATE.polaroids[polIdx].img = e.target.result;
+                        const polThumb = document.getElementById(`ed-pol-img-${polIdx}`);
+                        if (polThumb) polThumb.src = e.target.result;
+                    }
+                    renderPolaroidWall();
+                };
+                reader.readAsDataURL(file);
+            });
+            showToast(`📸 ${files.length} Foto baru berhasil dipasang ke Scrapbook!`);
+        }
+
+        function generateAutoRomanticLetter() {
+            const rec = document.getElementById('inp-recipient')?.value || 'Sayang';
+            const templates = [
+                `Selamat ulang tahun ya, ${rec} tersayang.\n\nTerima kasih sudah hadir dan jadi bagian paling hangat di hidupku. Aku selalu bangga melihat cara kamu berjuang dan tetap tersenyum melewati banyak hal.\n\nSemoga di usia baru ini, langkah kakimu selalu dimudahkan, dikelilingi kebahagiaan, dan semua doa rahasia yang kamu langitkan segera dikabulkan. Aku sayang kamu, hari ini dan selamanya ♥`,
+                `Happy Birthday, ${rec}!\n\nDari sekian banyak momen yang udah kita lewati bareng, setiap detik sama kamu selalu jadi kenangan favoritku. Makasih ya udah selalu sabar, pengertian, dan jadi tempat pulang paling nyaman buat aku.\n\nMari kita rayakan lebih banyak lagi ulang tahun bersama di tahun-tahun berikutnya ✨`
+            ];
+            const letterInput = document.getElementById('inp-letter');
+            if (letterInput) {
+                letterInput.value = templates[Math.floor(Math.random() * templates.length)];
+                showToast('✨ Surat romantis otomatis berhasil disusun!');
+            }
+        }
+
+        function applyCustomChanges(proceedToCheckout = false) {
+            saveEditorInputsToState();
+            syncAllBindingsFromState();
+            toggleCustomizerDrawer();
+
+            if (proceedToCheckout) {
+                openCheckoutModal();
+            } else {
+                showToast('✨ Semua perubahan teks & foto berhasil diterapkan!');
+            }
+        }
+
+        function saveEditorInputsToState() {
+            const recEl = document.getElementById('inp-recipient');
+            if (recEl) MEMORY_STATE.recipient = recEl.value || 'Alya Sayang';
+
+            const sndEl = document.getElementById('inp-sender');
+            if (sndEl) MEMORY_STATE.sender = sndEl.value || 'Raka';
+
+            const dtLblEl = document.getElementById('inp-date-label');
+            if (dtLblEl) MEMORY_STATE.bdayDateLabel = dtLblEl.value || '14 FEBRUARI';
+
+            const headEl = document.getElementById('inp-headline');
+            if (headEl) MEMORY_STATE.headline = headEl.value || 'Happy Birthday!';
+
+            const subEl = document.getElementById('inp-subheadline');
+            if (subEl) MEMORY_STATE.subheadline = subEl.value || '';
+
+            const hCapEl = document.getElementById('inp-hero-caption');
+            if (hCapEl) MEMORY_STATE.heroCaption = hCapEl.value || '';
+
+            const vchEl = document.getElementById('inp-voucher');
+            if (vchEl) MEMORY_STATE.voucherTitle = vchEl.value || '1x Dinner Romantis!';
+
+            const letEl = document.getElementById('inp-letter');
+            if (letEl) MEMORY_STATE.letterText = letEl.value || '';
+
+            const bDateVal = document.getElementById('inp-birthdate')?.value;
+            if (bDateVal) MEMORY_STATE.birthDate = new Date(bDateVal);
+
+            const aDateVal = document.getElementById('inp-annivdate')?.value;
+            if (aDateVal) MEMORY_STATE.togetherDate = new Date(aDateVal);
+
+            // Simpan perubahan 6 Polaroid jika panel sudah pernah dirender
+            MEMORY_STATE.polaroids.forEach((p, idx) => {
+                const capVal = document.getElementById(`ed-pol-cap-${idx}`)?.value;
+                const dateVal = document.getElementById(`ed-pol-date-${idx}`)?.value;
+                const noteVal = document.getElementById(`ed-pol-note-${idx}`)?.value;
+                if (capVal !== undefined) p.caption = capVal;
+                if (dateVal !== undefined) p.date = dateVal;
+                if (noteVal !== undefined) p.secretNote = noteVal;
+            });
+
+            // Simpan perubahan 8 Kertas Toples jika panel sudah pernah dirender
+            MEMORY_STATE.jarReasons = MEMORY_STATE.jarReasons.map((oldVal, idx) => {
+                const el = document.getElementById(`ed-jar-reason-${idx}`);
+                return el ? el.value : oldVal;
+            });
+        }
+
+        function syncAllBindingsFromState() {
+            document.querySelectorAll('[data-bind="recipient"]').forEach(el => el.textContent = MEMORY_STATE.recipient);
+            document.querySelectorAll('[data-bind="sender"]').forEach(el => el.textContent = MEMORY_STATE.sender);
+            document.querySelectorAll('[data-bind="slug"]').forEach(el => el.textContent = MEMORY_STATE.slug);
+            document.querySelectorAll('[data-bind="bdayDateLabel"]').forEach(el => el.textContent = MEMORY_STATE.bdayDateLabel);
+            document.querySelectorAll('[data-bind="headline"]').forEach(el => el.textContent = MEMORY_STATE.headline);
+            document.querySelectorAll('[data-bind="subheadline"]').forEach(el => el.textContent = MEMORY_STATE.subheadline);
+            document.querySelectorAll('[data-bind="heroCaption"]').forEach(el => el.textContent = MEMORY_STATE.heroCaption);
+            document.querySelectorAll('[data-bind="voucherTitle"]').forEach(el => el.textContent = MEMORY_STATE.voucherTitle);
+            document.querySelectorAll('[data-bind="letterText"]').forEach(el => el.textContent = MEMORY_STATE.letterText);
+
+            const heroImg = document.getElementById('hero-main-photo');
+            if (heroImg) heroImg.src = MEMORY_STATE.heroPhoto;
+
+            const jarTxt = document.getElementById('jar-note-text');
+            if (jarTxt && MEMORY_STATE.jarReasons.length) {
+                jarTxt.textContent = `"${MEMORY_STATE.jarReasons[0]}"`;
+            }
+
+            renderPolaroidWall();
+            updateLiveCounter();
+        }
+
+        // =================================================================
+        // 9B. CHECKOUT, DATA DIRI CUSTOMER, QRIS & WHATSAPP ADMIN ENGINE
+        // =================================================================
+        function formatRupiah(num) {
+            return 'Rp' + Number(num).toLocaleString('id-ID');
+        }
+
+        function openCheckoutModal() {
+            // Pastikan semua input yang baru diketik di editor tersimpan ke MEMORY_STATE
+            saveEditorInputsToState();
+            syncAllBindingsFromState();
+
+            const modal = document.getElementById('checkout-modal');
+            if (!modal) return;
+
+            // Sinkronisasi ringkasan isi kado
+            const recSum = document.getElementById('chk-summary-recipient');
+            const sndSum = document.getElementById('chk-summary-sender');
+            if (recSum) recSum.textContent = MEMORY_STATE.recipient;
+            if (sndSum) sndSum.textContent = MEMORY_STATE.sender;
+
+            // Set default slug dari nama penerima jika belum diubah
+            const slugInp = document.getElementById('cust-slug');
+            if (slugInp && slugInp.value === 'birthday-alya') {
+                const cleanRec = MEMORY_STATE.recipient.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                slugInp.value = `birthday-${cleanRec || 'memories'}`;
+                syncCustomSlugPreview(slugInp.value);
+            }
+
+            // Pasang konfigurasi QRIS & WA Admin
+            const merchEl = document.getElementById('qris-merchant-name');
+            const qrisImg = document.getElementById('qris-image-display');
+            const waDisp = document.getElementById('admin-wa-display');
+            if (merchEl) merchEl.textContent = PAYMENT_CONFIG.merchantName;
+            if (qrisImg) qrisImg.src = PAYMENT_CONFIG.qrisImageUrl;
+            if (waDisp) waDisp.textContent = PAYMENT_CONFIG.whatsappDisplay;
+
+            recalcCheckoutTotal();
+            modal.classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkout-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function syncCustomSlugPreview(val) {
+            const clean = (val || 'birthday-memories').toLowerCase().replace(/[^a-z0-9-]/g, '');
+            MEMORY_STATE.slug = clean || 'birthday-memories';
+            document.querySelectorAll('[data-bind="slug"]').forEach(el => el.textContent = MEMORY_STATE.slug);
+        }
+
+        function getCheckoutTotalNominal() {
+            let total = PAYMENT_CONFIG.basePrice;
+            if (document.getElementById('chk-addon-wm')?.checked) total += 10000;
+            if (document.getElementById('chk-addon-qr')?.checked) total += 9000;
+            if (document.getElementById('chk-addon-keychain')?.checked) total += 35000;
+            return total;
+        }
+
+        function recalcCheckoutTotal() {
+            const total = getCheckoutTotalNominal();
+            const priceEl = document.getElementById('chk-total-price');
+            if (priceEl) priceEl.textContent = formatRupiah(total);
+
+            const kcChecked = document.getElementById('chk-addon-keychain')?.checked;
+            const addrBox = document.getElementById('chk-keychain-address-box');
+            if (addrBox) addrBox.classList.toggle('hidden', !kcChecked);
+        }
+
+        function copyTotalNominal() {
+            const total = getCheckoutTotalNominal();
+            const temp = document.createElement('textarea');
+            temp.value = String(total);
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast(`📋 Nominal ${formatRupiah(total)} berhasil disalin!`);
+        }
+
+        function submitOrderToWhatsApp() {
+            saveEditorInputsToState();
+            syncAllBindingsFromState();
+
+            const custName = (document.getElementById('cust-name')?.value || '').trim();
+            const custWa = (document.getElementById('cust-wa')?.value || '').trim();
+            const custEmail = (document.getElementById('cust-email')?.value || '-').trim();
+            const custSlug = (document.getElementById('cust-slug')?.value || MEMORY_STATE.slug).trim();
+            const custNote = (document.getElementById('cust-note')?.value || '-').trim();
+
+            if (!custName) {
+                document.getElementById('cust-name')?.focus();
+                showToast('⚠️ Mohon isi Nama Lengkap kamu terlebih dahulu ya!');
+                return;
+            }
+            if (!custWa) {
+                document.getElementById('cust-wa')?.focus();
+                showToast('⚠️ Mohon isi Nomor WhatsApp aktif kamu ya!');
+                return;
+            }
+
+            const addons = [];
+            if (document.getElementById('chk-addon-wm')?.checked) addons.push('Hapus Watermark (+Rp10.000)');
+            if (document.getElementById('chk-addon-qr')?.checked) addons.push('QR Code Siap Cetak (+Rp9.000)');
+            const kcChecked = document.getElementById('chk-addon-keychain')?.checked;
+            const kcColor = document.getElementById('cust-keychain-color')?.value || 'Pink Blossom';
+            const custAddr = (document.getElementById('cust-address')?.value || '-').trim();
+            if (kcChecked) {
+                addons.push(`Heart QR Keychain 3D - Warna ${kcColor} (+Rp35.000)`);
+            }
+
+            const total = getCheckoutTotalNominal();
+            const bDateStr = document.getElementById('inp-birthdate')?.value || '2004-02-14';
+            const aDateStr = document.getElementById('inp-annivdate')?.value || '2024-05-10';
+
+            const getPhotoStatus = (src) => {
+                if (!src) return 'Default';
+                if (src.startsWith('data:image')) return 'Foto Galeri Customer (Kirim via Chat WA)';
+                return src;
+            };
+
+            const polaroidSummary = MEMORY_STATE.polaroids
+                .map((p, i) => `  ${i + 1}. *${p.caption}* (${p.date})\n     _Catatan Belakang:_ "${p.secretNote}"\n     _Sumber Foto:_ ${getPhotoStatus(p.img)}`)
+                .join('\n');
+
+            const jarSummary = MEMORY_STATE.jarReasons
+                .map((r, i) => `  ${i + 1}. "${r}"`)
+                .join('\n');
+
+            const messageLines = [
+                `Halo Admin *lovinly*, saya sudah melakukan pembayaran via *QRIS* untuk pemesanan template kado digital:`,
+                ``,
+                `*=== 1. DATA DIRI CUSTOMER ===*`,
+                `• *Nama Pemesan:* ${custName}`,
+                `• *No. WhatsApp:* ${custWa}`,
+                `• *Email:* ${custEmail}`,
+                `• *Custom Link:* lovinly/${custSlug}`,
+                kcChecked ? `• *Warna Keychain:* ${kcColor}` : null,
+                kcChecked ? `• *Alamat Pengiriman Keychain:* ${custAddr}` : null,
+                `• *Catatan:* ${custNote}`,
+                ``,
+                `*=== 2. RINCIAN PEMBAYARAN QRIS ===*`,
+                `• *Template:* ${PAYMENT_CONFIG.templateName} (${formatRupiah(PAYMENT_CONFIG.basePrice)})`,
+                `• *Add-On:* ${addons.length ? addons.join(', ') : 'Tidak ada'}`,
+                `• *Total Bayar QRIS:* *${formatRupiah(total)}*`,
+                ``,
+                `*=== 3. DATA LENGKAP ISI KADO CUSTOMER ===*`,
+                `• *Nama Penerima (Doi):* ${MEMORY_STATE.recipient}`,
+                `• *Nama Pengirim:* ${MEMORY_STATE.sender}`,
+                `• *Label Tanggal Amplop:* ${MEMORY_STATE.bdayDateLabel}`,
+                `• *Tgl Lahir Doi:* ${bDateStr} | *Tgl Jadian:* ${aDateStr}`,
+                `• *Judul Scrapbook:* ${MEMORY_STATE.headline}`,
+                `• *Sub-Judul:* ${MEMORY_STATE.subheadline}`,
+                `• *Caption Foto Utama:* ${MEMORY_STATE.heroCaption}`,
+                `• *Sumber Foto Utama:* ${getPhotoStatus(MEMORY_STATE.heroPhoto)}`,
+                `• *Hadiah Voucher Gosok:* ${MEMORY_STATE.voucherTitle}`,
+                ``,
+                `*• Isi Surat Ulang Tahun:*`,
+                `"${MEMORY_STATE.letterText}"`,
+                ``,
+                `*• Detail 6 Foto Polaroid (Depan & Belakang):*`,
+                polaroidSummary,
+                ``,
+                `*• 8 Pesan Toples Kenangan:*`,
+                jarSummary,
+                ``,
+                `Berikut saya kirimkan *foto kenangan* beserta *bukti pembayaran QRIS*-nya di chat ini ya Min. Terima kasih! 🙏✨`
+            ].filter(Boolean).join('\n');
+
+            // Salin otomatis juga ke clipboard sebagai cadangan
+            try {
+                const temp = document.createElement('textarea');
+                temp.value = messageLines;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+            } catch (e) {}
+
+            window.open(`https://wa.me/${PAYMENT_CONFIG.whatsappNumber}?text=${encodeURIComponent(messageLines)}`, '_blank');
+            showToast('✅ Seluruh data kado berhasil dikirim ke WhatsApp Admin!');
+        }
+
+        function askAdminDirectly() {
+            const text = `Halo Admin *lovinly*, saya mau tanya-tanya dulu untuk pemesanan template *Birthday Memories* 😊`;
+            window.open(`https://wa.me/${PAYMENT_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // =================================================================
+        // 10. AMBIENT ROSE PETALS & CELEBRATION CONFETTI ENGINE
+        // =================================================================
+        const particles = [];
+        function initPetalsCanvas() {
+            const canvas = document.getElementById('petals-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            const resize = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            };
+            resize();
+            window.addEventListener('resize', resize);
+
+            // Seed gentle ambient petals
+            for (let i = 0; i < 18; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vy: 0.4 + Math.random() * 0.8,
+                    vx: (Math.random() - 0.5) * 0.6,
+                    size: 12 + Math.random() * 8,
+                    char: ['🌸', '✨', '💮', '🍃'][i % 4],
+                    temp: false
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.y += p.vy;
+                    p.x += p.vx;
+                    ctx.font = `${p.size}px sans-serif`;
+                    ctx.fillText(p.char, p.x, p.y);
+
+                    if (p.y > canvas.height + 30) {
+                        if (p.temp) {
+                            particles.splice(i, 1);
+                        } else {
+                            p.y = -20;
+                            p.x = Math.random() * canvas.width;
+                        }
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function burstCelebrationParticles(count) {
+            const canvas = document.getElementById('petals-canvas');
+            if (!canvas) return;
+            const icons = ['🎉', '💖', '✨', '🎂', '🌸', '🎈'];
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: -10 - Math.random() * 120,
+                    vy: 2.2 + Math.random() * 3.2,
+                    vx: (Math.random() - 0.5) * 2.4,
+                    size: 16 + Math.random() * 12,
+                    char: icons[i % icons.length],
+                    temp: true
+                });
+            }
+        }
+
+        // =================================================================
+        // 11. INITIALIZE ON PAGE LOAD
+        // =================================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            syncAllBindingsFromState();
+            setInterval(updateLiveCounter, 1000);
+            initScratchCard();
+            initPetalsCanvas();
+        });
+    </script>
+</body>
+</html>
